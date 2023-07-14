@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -16,9 +17,26 @@ import logo from './components/images/apple-touch-icon.png';
 import Home from './components/Home';
 
 function App() {
+  const [hideNavbar, setHideNavbar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 0) {
+        setHideNavbar(true);
+      } else {
+        setHideNavbar(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <Router>
-      <Navbar style={{background: "linear-gradient(to right, #35119d, #7415f0)"}}fixed='top'  variant="dark" expand="lg">
+      <Navbar className={`navbar ${hideNavbar ? 'hidden' : ''}`}style={{background: "linear-gradient(to right, #35119d, #7415f0)"}}fixed='top'  variant="dark" expand="lg">
         <Navbar.Brand href="home"><img src={logo} alt="" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

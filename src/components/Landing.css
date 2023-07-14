@@ -9,14 +9,21 @@
     cursor: pointer;
     margin-right: 50px!important;
 }
+.hidden{
+  display: none;
+}
+body {
+  overflow-x: hidden;
+}
 
 .topArea{
   width: 100%!important;
-  height: 69vh!important;
+  height: 100vh!important;
   background: linear-gradient(to right, #37119d, #349de3);
   
 }
 .topLeftArea{
+  margin-top: 200px;
   float: left;
   align-self: center;
   font-family: Open Sans, sans-serif;
@@ -28,7 +35,11 @@
   height: fit-content;
   width:100%;
 }
-
+.slideInRight{
+  overflow: hidden;
+  white-space: nowrap;
+  animation: slideInRight 1s steps(20) 0.5s;
+}
 .flash{
   animation: flash 1s infinite;
 }
@@ -42,5 +53,14 @@
   }
   100%{
     opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }
